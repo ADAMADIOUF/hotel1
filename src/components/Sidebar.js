@@ -7,10 +7,12 @@ import { Link } from 'react-router-dom'
 const Sidebar = () => {
   const { isSidebarOpen ,closeSidebar} = useGlobalContext()
   return (
-    <aside className={`${isSidebarOpen?"sidebar showSidebar":"sidebar"}`}>
+    <aside className={`${isSidebarOpen ? 'sidebar showSidebar' : 'sidebar'}`}>
       <div className='sidebar-header'>
-        <img src={logo} alt='' className='logo' />
-        <button className='close'onClick={closeSidebar}>
+        <Link to={`/`}>
+          <img src={logo} alt='' className='logo' onClick={closeSidebar} />
+        </Link>
+        <button className='close' onClick={closeSidebar}>
           <FaTimes />
         </button>
       </div>
@@ -18,7 +20,7 @@ const Sidebar = () => {
         {links.map((link) => {
           const { url, text, id } = link
           return (
-            <li key={id}>
+            <li key={id} onClick={closeSidebar}>
               <Link to={url}>{text}</Link>
             </li>
           )
